@@ -45,3 +45,30 @@ export const fetchCountries = async () => {
     console.log({ message: error });
   }
 };
+
+const new_url = "https://disease.sh/v3/covid-19";
+
+export const fetchMap = async (country) => {
+  try {
+    const {
+      data: {
+        countryInfo,
+        todayCases,
+        todayDeaths,
+        todayRecovered,
+        cases,
+        updated,
+      },
+    } = await axios.get(`${new_url}/countries/${country}`);
+    return {
+      countryInfo,
+      todayCases,
+      todayDeaths,
+      todayRecovered,
+      cases,
+      updated,
+    };
+  } catch (error) {
+    console.log({ message: error });
+  }
+};

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styles from "./App.module.css";
 
-import { Cards, Chart, CountryPicker } from "./components";
+import { Cards, Chart, CountryPicker, Footer, CountryMap } from "./components";
 import { fetchData } from "./api";
+import { Box } from "@material-ui/core";
 
 const App = () => {
   const [data, setData] = useState({});
@@ -17,21 +18,22 @@ const App = () => {
   }, []);
 
   const handleCountryChange = async (country) => {
-    //fetch The Data
     const fetchedData = await fetchData(country);
-    console.log(fetchedData);
-    //set Tha State
     setData(fetchedData);
     setCountry(country);
   };
 
   return (
-    <div className={styles.container}>
-      <img className={styles.image} src="images/covid.png" alt="COVID-19" />
-      <Cards data={data} />
-      <CountryPicker handleCountryChange={handleCountryChange} />
-      <Chart />
-    </div>
+    <>
+      <Box component="div" className={styles.container}>
+        <img className={styles.image} src="images/covid.png" alt="COVID-19" />
+        <Cards data={data} />
+        <CountryPicker handleCountryChange={handleCountryChange} />
+        <Chart data={data} country={country} />
+        <CountryMap country={country} />
+      </Box>
+      <Footer />
+    </>
   );
 };
 

@@ -5,7 +5,7 @@ import styles from "./Chart.module.css";
 import { fetchDailyData } from "../../api";
 import { Box } from "@material-ui/core";
 
-const Chart = () => {
+const Chart = ({ data: { confirmed, deaths, recovered }, country }) => {
   const [dailyData, setDailyData] = useState([]);
 
   useEffect(() => {
@@ -24,14 +24,14 @@ const Chart = () => {
           {
             data: dailyData.map(({ confirmed }) => confirmed),
             label: "Infected",
-            borderColor: "#3333ff",
+            borderColor: "rgb(254, 209, 54)",
             fill: true,
           },
           {
             data: dailyData.map(({ deaths }) => deaths),
             label: "Deaths",
             borderColor: "red",
-            backgroundColor: "rgba(255,0,0,0.5)",
+            backgroundColor: "rgba(255,0,0,0.4)",
             fill: true,
           },
         ],
@@ -39,9 +39,32 @@ const Chart = () => {
     />
   ) : null;
 
+  const barChart = confirmed ? (
+    <Bar
+      data={{
+        labels: ["Infected", "Recovered", "Deaths"],
+        datasets: [
+          {
+            label: "People",
+            backgroundColor: [
+              "rgba(255, 194, 0)",
+              "rgba(0,255,0,0.5)",
+              "rgba(255,0,0,0.5)",
+            ],
+            data: [confirmed.value, recovered.value, deaths.value],
+          },
+        ],
+      }}
+      options={{
+        legend: { display: false },
+        title: { display: true, text: `Current state in ${country}` },
+      }}
+    />
+  ) : null;
+
   return (
     <Box component="div" className={styles.container}>
-      {LineChart}
+      {country ? barChart : LineChart}
     </Box>
   );
 };

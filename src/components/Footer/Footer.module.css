@@ -1,0 +1,17 @@
+.container {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.typoLeft {
+  color: gray;
+  text-align: center;
+  margin-left: 1rem !important;
+}
+
+.typoRight {
+  color: gray;
+  text-align: center;
+}
