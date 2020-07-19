@@ -21,8 +21,6 @@ const CountryMap = ({ country }) => {
     return () => {};
   }, [country]);
 
-  console.log(mapData);
-
   return (
     <Box component="div" className={styles.container}>
       {Object.keys(mapData).length === 0 ? (
