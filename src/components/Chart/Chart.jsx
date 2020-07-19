@@ -23,13 +23,13 @@ const Chart = () => {
         datasets: [
           {
             data: dailyData.map(({ confirmed }) => confirmed),
-            labels: "Infected",
+            label: "Infected",
             borderColor: "#3333ff",
             fill: true,
           },
           {
             data: dailyData.map(({ deaths }) => deaths),
-            labels: "Infected",
+            label: "Deaths",
             borderColor: "red",
             backgroundColor: "rgba(255,0,0,0.5)",
             fill: true,
@@ -41,7 +41,6 @@ const Chart = () => {
 
   return (
     <Box component="div" className={styles.container}>
-      {console.log(dailyData)}
       {LineChart}
     </Box>
   );
