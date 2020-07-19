@@ -29,9 +29,9 @@ const CountryMap = ({ country }) => {
         <Box>Loading. .. ... </Box>
       ) : (
         <Grid container justify="center">
-          <Grid item xs={11} md={11} component={Card} className={styles.card}>
+          <Grid item xs={12} md={11} component={Card} className={styles.card}>
             <CardContent className={styles.content}>
-              <Box>
+              <Box className={styles.cardBox}>
                 <Typography gutterBottom variant="h4">
                   {country}
                 </Typography>
@@ -63,7 +63,7 @@ const CountryMap = ({ country }) => {
         </Grid>
       )}
 
-      <Box component="div" style={{ height: "80vh", width: "90%" }}>
+      <Box component="div" style={{ height: "80vh", width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: API_KEY }}
           defaultCenter={{
